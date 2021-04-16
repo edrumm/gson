@@ -1,6 +1,8 @@
 package gson
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -12,7 +14,20 @@ type Parser struct {
 	*/
 }
 
-func Parse(json string) (JSONObject, error) {
+func flatten(str string) ([]byte, error) {
+	buf := new(bytes.Buffer)
+
+	if err := json.Compact(buf, []byte(str)); err != nil {
+		return nil, &parserError{err.Error(), 0}
+	}
+
+	return buf.Bytes(), nil
+}
+
+func Parse(str string) (JSONObject, error) {
+	obj := make(JSONObject)
+
+	// flatten(str)
 
 	/*
 	   TODO
@@ -20,5 +35,5 @@ func Parse(json string) (JSONObject, error) {
 
 	fmt.Println("Under Construction...")
 
-	return nil, nil
+	return obj, nil
 }
