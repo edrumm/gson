@@ -7,6 +7,7 @@ import (
 
 func main() {
 	// create a new parser
+	// (* Parser)
 	parser := gson.NewParser()
 
 	// parse from string

@@ -1,5 +1,4 @@
 # gson
+a simple, tiny JSON parser for Go applications
 
-Under Construction
----
-a basic JSON parser in Go
+## Under Construction
