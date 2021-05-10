@@ -1,8 +1,6 @@
 package gson
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 )
 
@@ -33,24 +31,66 @@ func NewParser() *Parser {
 	return &Parser{}
 }
 
-/*
-	Removes whitespace and newlines
-	Converts to []byte for easier parsing
-*/
-func flatten(str string) ([]byte, error) {
-	buf := new(bytes.Buffer)
+func parseSequence(input, expect string) (bool, *parserError) {
+	ex := []rune(expect)
 
-	if err := json.Compact(buf, []byte(str)); err != nil {
-		return nil, &parserError{err.Error(), -1}
+	if len(input) != len(expect) {
+		return false, &parserError{"Bad symbol", expect, input}
 	}
 
-	return buf.Bytes(), nil
+	for i, c := range input {
+		if c != ex[i] {
+			return false, &parserError{"Bad symbol", expect, input}
+		}
+	}
+
+	return true, nil
 }
 
-func (p *Parser) Parse(str string) (JSONObject, error) {
-	obj := make(JSONObject)
+func parseNull() {
+	/*
+		TODO
+	*/
+}
 
-	// tokens, err := flatten(str)
+func parseBool() {
+	/*
+		TODO
+	*/
+}
+
+func parseString() {
+	/*
+		TODO
+	*/
+}
+
+func parseNumber() {
+	/*
+		TODO
+	*/
+}
+
+func parseArray() {
+	/*
+		TODO
+	*/
+}
+
+func parseObject() {
+	/*
+		TODO
+	*/
+}
+
+func parseKey() {
+	/*
+		TODO
+	*/
+}
+
+func (p *Parser) Parse(str string) (JSONObject, *parserError) {
+	obj := make(JSONObject)
 
 	/*
 	   TODO

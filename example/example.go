@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/edrumm/gson"
 )
 
@@ -11,11 +10,16 @@ func main() {
 	parser := gson.NewParser()
 
 	// parse from string
-	// (struct JSONObject, Error)
+	// (map[string]interface{}, *parserError)
 	obj, err := parser.Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
-		fmt.Println(err.Error())
+		// error message
+		// (string)
+		err.Error()
+
+		// print error message to os.Stderr
+		err.PrintError()
 	}
 
 	/* json object to string
