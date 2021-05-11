@@ -3,13 +3,9 @@ package main
 import "github.com/edrumm/gson"
 
 func main() {
-	// create a new parser
-	// (* Parser)
-	parser := gson.NewParser()
-
 	// parse from string
 	// (map[string]interface{}, *parserError)
-	obj, err := parser.Parse(`"language": "Go", "best": true`)
+	obj, err := gson.Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
 		// error message
@@ -21,5 +17,6 @@ func main() {
 	}
 
 	/* json object to string
-	str := */parser.ToString(obj)
+	   (string)
+	str := */gson.ToString(obj)
 }

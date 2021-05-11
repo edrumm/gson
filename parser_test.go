@@ -3,9 +3,8 @@ package gson
 import "testing"
 
 func TestParser_Parse(t *testing.T) {
-	parser := NewParser()
 
-	_, err := parser.Parse(`"language": "Go", "best": true`)
+	_, err := Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
 		err.PrintError()
@@ -14,16 +13,15 @@ func TestParser_Parse(t *testing.T) {
 }
 
 func TestParser_ToString(t *testing.T) {
-	parser := NewParser()
 
-	obj, err := parser.Parse(`"language": "Go", "best": true`)
+	obj, err := Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
 		err.PrintError()
 		t.Fail()
 	}
 
-	str := parser.ToString(obj)
+	str := ToString(obj)
 
 	// TODO
 	if str != "" {

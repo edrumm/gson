@@ -1,19 +1,18 @@
 package gson
 
-import (
-	"fmt"
-)
+import "fmt"
 
 /*
 	JSON object struct
-	represents a key : value pair
 */
 type JSONObject = map[string]interface{}
 
 /*
-	Parser struct object
+	Parser object
 */
 type Parser struct {
+	pos int
+
 	/*
 	   TODO
 	*/
@@ -22,94 +21,87 @@ type Parser struct {
 /*
 	Create a new parser
 */
-func NewParser() *Parser {
+func newParser() *Parser {
 
 	/*
 		TODO
 	*/
 
-	return &Parser{}
+	return &Parser{0}
 }
 
-func match(input, expect string) (bool, *parserError) {
-	ex := []rune(expect)
+func (p *Parser) parseNull(s string) (bool, *parserError) {
 
-	if len(input) != len(expect) {
-		return false, &parserError{"Bad symbol", input, expect, input}
+	if s == "null" {
+		p.pos += 4
+		return true, nil
 	}
 
-	for i, c := range input {
-		if c != ex[i] {
-			return false, &parserError{"Bad symbol", input, expect, input}
-		}
+	return false, &parserError{"Bad symbol", s, "null", s}
+}
+
+func (p *Parser) parseBool(s string) (bool, *parserError) {
+
+	if s == "true" {
+		p.pos += 4
+		return true, nil
+
+	} else if s == "false" {
+		p.pos += 5
+		return false, nil
 	}
 
-	return true, nil
+	return false, &parserError{"Bad symbol", s, "[true|false]", s}
 }
 
-func parseNull() {
+func (p *Parser) parseString() {
 	/*
 		TODO
 	*/
 }
 
-func parseBool() {
+func (p *Parser) parseNumber() {
 	/*
 		TODO
 	*/
 }
 
-func parseString() {
+func (p *Parser) parseArray() {
 	/*
 		TODO
 	*/
 }
 
-func parseNumber() {
+func (p *Parser) parseObject() {
 	/*
 		TODO
 	*/
 }
 
-func parseArray() {
-	/*
-		TODO
-	*/
-}
+func (p *Parser) parseKey(s string) *parserError {
 
-func parseObject() {
-	/*
-		TODO
-	*/
-}
-
-func parseKey(key string) *parserError {
-	/*
-			TODO:
-			* decide if this function should return bool and only parse value - let Parse() determine errors
-		  * or should this func return an error if MatchString() returns false?
-	*/
-
-	if JSON_Key.MatchString(key) {
+	if JSON_Key.MatchString(s) {
+		p.pos += len(s)
 		return nil
 	}
 
-	return &parserError{"Invalid key", key, "", ""}
+	return &parserError{"Invalid key", s, "", ""}
 }
 
-func (p *Parser) Parse(str string) (JSONObject, *parserError) {
-	obj := make(JSONObject)
+func Parse(s string) (JSONObject, *parserError) {
+	p := newParser()
+	p.pos = 0
 
 	/*
 	   TODO
 	*/
 
-	fmt.Println("Under Construction...")
+	fmt.Println("Under construction...")
 
-	return obj, nil
+	return nil, nil
 }
 
-func (p *Parser) ToString(obj JSONObject) string {
+func ToString(o JSONObject) string {
 
 	/*
 		TODO
