@@ -8,7 +8,8 @@ func TestParser_Parse(t *testing.T) {
 	_, err := parser.Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
-		t.Fatalf("Error: %s", err.Error())
+		err.PrintError()
+		t.Fail()
 	}
 }
 
@@ -18,7 +19,8 @@ func TestParser_ToString(t *testing.T) {
 	obj, err := parser.Parse(`"language": "Go", "best": true`)
 
 	if err != nil {
-		t.Fatalf("Error: %s", err.Error())
+		err.PrintError()
+		t.Fail()
 	}
 
 	str := parser.ToString(obj)

@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/edrumm/gson"
-)
+import "github.com/edrumm/gson"
 
 func main() {
 	// create a new parser
