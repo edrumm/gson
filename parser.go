@@ -83,10 +83,12 @@ func parseObject() {
 	*/
 }
 
-func parseKey() {
+func parseKey(key string) bool {
 	/*
 		TODO
 	*/
+
+	return JSON_Key.MatchString(key)
 }
 
 func (p *Parser) Parse(str string) (JSONObject, *parserError) {
