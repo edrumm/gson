@@ -3,7 +3,7 @@ package gson
 import "fmt"
 
 /*
-	JSON object struct
+	Type alias for a JSON object
 */
 type JSONObject = map[string]interface{}
 
@@ -90,13 +90,20 @@ func (p *Parser) parseKey(s string) *parserError {
 
 func Parse(s string) (JSONObject, *parserError) {
 	p := newParser()
+
+	/*
+		Avoid unused error
+		TO BE REMOVED
+	*/
 	p.pos = 0
 
 	/*
 	   TODO
 	*/
 
-	fmt.Println("Under construction...")
+	fmt.Println("gson is currently UNDER CONSTRUCTION...")
+	fmt.Println(" * check the repository @ https://github.com/edrumm/gson for updates")
+	fmt.Println(" * v0 coming soon")
 
 	return nil, nil
 }
