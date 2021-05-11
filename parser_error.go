@@ -6,17 +6,18 @@ import (
 )
 
 type parserError struct {
-	err    string
-	expect string
-	actual string
+	err          string
+	invalidToken string
+	expect       string
+	actual       string
 }
 
 func (e parserError) Error() string {
 	if e.expect == "" || e.actual == "" {
-		return fmt.Sprintf("Error while formatting: %s", e.err)
+		return fmt.Sprintf("%s at token %s", e.err, e.invalidToken)
 	}
 
-	return fmt.Sprintf("ParserError: %s, expected %s but found %s", e.err, e.expect, e.actual)
+	return fmt.Sprintf("%s at token %s, expected %s but found %s", e.err, e.invalidToken, e.expect, e.actual)
 }
 
 /*
