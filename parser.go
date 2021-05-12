@@ -8,9 +8,9 @@ import "fmt"
 type JSONObject = map[string]interface{}
 
 /*
-	Parser object
+	parser object
 */
-type Parser struct {
+type parser struct {
 	pos int
 
 	/*
@@ -21,69 +21,56 @@ type Parser struct {
 /*
 	Create a new parser
 */
-func newParser() *Parser {
+func newParser() *parser {
 
 	/*
 		TODO
 	*/
 
-	return &Parser{0}
+	return &parser{0}
 }
 
-func (p *Parser) parseNull(s string) (bool, *parserError) {
-
-	if s == "null" {
-		p.pos += 4
-		return true, nil
-	}
-
-	return false, &parserError{"Bad symbol", s, "null", s}
-}
-
-func (p *Parser) parseBool(s string) (bool, *parserError) {
-
-	if s == "true" {
-		p.pos += 4
-		return true, nil
-
-	} else if s == "false" {
-		p.pos += 5
-		return false, nil
-	}
-
-	return false, &parserError{"Bad symbol", s, "[true|false]", s}
-}
-
-func (p *Parser) parseString() {
+func (p *parser) parseNull(s string) {
 	/*
 		TODO
 	*/
 }
 
-func (p *Parser) parseNumber() {
+func (p *parser) parseBool(s string) {
 	/*
 		TODO
 	*/
 }
 
-func (p *Parser) parseArray() {
+func (p *parser) parseString() {
 	/*
 		TODO
 	*/
 }
 
-func (p *Parser) parseObject() {
+func (p *parser) parseNumber() {
 	/*
 		TODO
 	*/
 }
 
-func (p *Parser) parseKey(s string) *parserError {
+func (p *parser) parseArray() {
+	/*
+		TODO
+	*/
+}
 
-	if JSON_Key.MatchString(s) {
-		p.pos += len(s)
-		return nil
-	}
+func (p *parser) parseObject() {
+	/*
+		TODO
+	*/
+}
+
+func (p *parser) parseKey(s string) *parserError {
+
+	/*
+		TODO
+	*/
 
 	return &parserError{"Invalid key", s, "", ""}
 }
@@ -108,7 +95,7 @@ func Parse(s string) (JSONObject, *parserError) {
 	return nil, nil
 }
 
-func ToString(o JSONObject) string {
+func ToString(jo JSONObject) string {
 
 	/*
 		TODO
