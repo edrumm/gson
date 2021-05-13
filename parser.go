@@ -75,7 +75,7 @@ func (p *parser) parseKey(s string) *parserError {
 	return &parserError{"Invalid key", s, "", ""}
 }
 
-func Parse(s string) (JSONObject, *parserError) {
+func Parse(s string) (*JSONObject, *parserError) {
 	p := newParser()
 
 	/*

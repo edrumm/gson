@@ -17,7 +17,15 @@ const (
 )
 
 var (
-	json_number_int   = regexp.MustCompile("[-]?([0-9]|[1-9]+)")
-	json_number_float = regexp.MustCompile("[-]?([0-9]\\.[0-9]+|[1-9]+\\.[0-9]+)")
-	json_key          = regexp.MustCompile("^([a-zA-Z]([a-zA-Z0-9]|[\\-|_])*)+$")
+	jsonNumberInt   = regexp.MustCompile("[-]?([0-9]|[1-9]+)")
+	jsonNumberFloat = regexp.MustCompile("[-]?([0-9]\\.[0-9]+|[1-9]+\\.[0-9]+)")
+	jsonKey         = regexp.MustCompile("^([a-zA-Z]([a-zA-Z0-9]|[\\-|_])*)+$")
+	typeMapping     = map[string]string{
+		"number":  "float64",
+		"string":  "string",
+		"boolean": "bool",
+		"null":    "nil",
+		"array":   "[]interface{}",
+		"object":  "map[string]interface{}",
+	}
 )
